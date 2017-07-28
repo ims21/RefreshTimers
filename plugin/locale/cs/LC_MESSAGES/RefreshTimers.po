@@ -1,0 +1,70 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: RefreshTimers\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-28 12:52+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: ims <ims21@users.sourceforge.net>\n"
+"Language-Team: PLi <ims21@users.sourceforge.net>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "update begin time for timer events"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Manually"
+msgstr ""
+
+msgid "Nowhere"
+msgstr ""
+
+msgid "Enable Refresh Timer"
+msgstr ""
+
+msgid "Time (mm:ss)"
+msgstr ""
+
+msgid "Services with PDC only"
+msgstr ""
+
+msgid "Save log"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+#, python-format
+msgid "RefreshTimers Setup v%s"
+msgstr ""
+
+msgid "Harddisk"
+msgstr ""
+
+msgid "USB"
+msgstr ""
+
+msgid "root"
+msgstr ""
+
+msgid "CF"
+msgstr ""
+
+msgid "RefreshTimers - Manually"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Correction"
+msgstr ""
