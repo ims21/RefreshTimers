@@ -4,7 +4,7 @@ from . import _
 #
 #    RefreshTimers plugin for OpenPLi Enigma2
 #    version:
-VERSION = "0.45"
+VERSION = "0.46"
 #    by ims(ims21) (c)2017
 #
 #    This program is free software; you can redistribute it and/or
