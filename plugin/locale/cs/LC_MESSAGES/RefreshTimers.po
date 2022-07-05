@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma 2 RefreshTimers Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 15:22+0200\n"
-"PO-Revision-Date: 2022-07-05 15:24+0200\n"
+"POT-Creation-Date: 2022-07-05 16:05+0200\n"
+"PO-Revision-Date: 2022-07-05 16:06+0200\n"
 "Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: PLi\n"
 "Language: cs_CZ\n"
@@ -13,43 +13,35 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 3.1\n"
 
-#: ../ui.py:200
-#, python-format
-msgid " and %s end time"
-msgid_plural " and %s end times"
-msgstr[0] "a %s koncový čas"
-msgstr[1] "a %s koncové časy"
-msgstr[2] "a %s koncových časů"
-
-#: ../ui.py:248
+#: ../ui.py:254
 msgid "CF"
 msgstr ""
 
-#: ../ui.py:86 ../ui.py:282
+#: ../ui.py:88 ../ui.py:288
 msgid "Cancel"
 msgstr "Zavřít"
 
-#: ../ui.py:284
+#: ../ui.py:290
 msgid "Correction"
 msgstr "Upravit"
 
-#: ../ui.py:105
+#: ../ui.py:111
 msgid "Enable Refresh Timer"
 msgstr "Povolit Refresh Timer"
 
-#: ../ui.py:230 ../ui.py:250
+#: ../ui.py:236 ../ui.py:256
 msgid "Harddisk"
 msgstr ""
 
-#: ../ui.py:115
+#: ../ui.py:121
 msgid "Location"
 msgstr "Umístění"
 
-#: ../ui.py:88
-msgid "Manually"
-msgstr "Ručně"
+#: ../ui.py:90
+msgid "Manual correction"
+msgstr "Upravit ručně"
 
-#: ../ui.py:224
+#: ../ui.py:230
 #, python-format
 msgid "Need refresh %s timer event:"
 msgid_plural "Need refresh %s timer events:"
@@ -57,36 +49,36 @@ msgstr[0] "Je potřeba aktualizovat %s časovač:"
 msgstr[1] "Je potřeba aktualizovat %s časovače:"
 msgstr[2] "Je potřeba aktualizovat %s časovačů:"
 
-#: ../ui.py:209
+#: ../ui.py:215
 msgid "No changes needed..."
 msgstr "Nesou potřeba změny..."
 
-#: ../ui.py:174 ../ui.py:207
+#: ../ui.py:180 ../ui.py:213
 msgid "Not possible - EPGRefresh is running."
 msgstr "Není možné - probíhá EPGRefresh."
 
-#: ../ui.py:180
+#: ../ui.py:186
 msgid "Nothing was changed"
 msgstr "Nic nebylo změněno"
 
-#: ../ui.py:100
+#: ../ui.py:106
 msgid "Nowhere"
 msgstr "Nikde"
 
-#: ../ui.py:111
+#: ../ui.py:117
 msgid "Refresh time period (mm:ss)"
 msgstr "Interval obnovování (mm:ss)"
 
-#: ../ui.py:270
+#: ../ui.py:276
 msgid "RefreshTimers - Manually"
 msgstr "RefreshTimers - ručně"
 
-#: ../ui.py:123
+#: ../ui.py:129
 #, python-format
 msgid "RefreshTimers Setup v%s"
 msgstr "RefreshTimers - nastavení v%s"
 
-#: ../ui.py:199
+#: ../ui.py:205
 #, python-format
 msgid "Refreshed %d timer events start time"
 msgid_plural "Refreshed %d timer events start times"
@@ -94,33 +86,39 @@ msgstr[0] "Zaktualizován %d počáteční"
 msgstr[1] "Zaktualizovány %d počáteční"
 msgstr[2] "Zaktualizováno %d počátečních"
 
-#: ../ui.py:85
+#: ../ui.py:87
 msgid "Save"
 msgstr "Uložit"
 
-#: ../ui.py:113
+#: ../ui.py:119
 msgid "Save log"
 msgstr "Ukládat log"
 
-#: ../ui.py:112
+#: ../ui.py:118
 msgid "Services with PDC only"
 msgstr "Pouze programy s PDC"
 
-#: ../ui.py:283
-msgid "Test"
+#: ../ui.py:289
+#, fuzzy
+msgid "Test only"
 msgstr "Otestovat"
 
-#: ../ui.py:231
+#: ../ui.py:237
 msgid "USB"
 msgstr ""
 
-#: ../ui.py:245
+#: ../ui.py:206
+#, python-format
+msgid "and %s end time"
+msgid_plural "and %s end times"
+msgstr[0] "a %s koncový čas"
+msgstr[1] "a %s koncové časy"
+msgstr[2] "a %s koncových časů"
+
+#: ../ui.py:251
 msgid "root"
 msgstr ""
 
 #: ../plugin.py:35
 msgid "update times for timer events"
 msgstr "aktualizace časů událostí časovačů"
-
-#~ msgid "Time (mm:ss)"
-#~ msgstr "Čas (mm:ss)"

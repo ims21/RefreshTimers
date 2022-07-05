@@ -28,6 +28,8 @@ from Components.Label import Label
 
 from enigma import eEPGCache, eTimer
 from Components.config import config, getConfigListEntry, ConfigYesNo, ConfigSubsection, ConfigClock, ConfigSelection, ConfigText
+from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
 from ServiceReference import ServiceReference
 import datetime
 import skin
@@ -56,10 +58,10 @@ rC = "\c00ff4000"
 class RefreshTimersSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="RefreshTimersSetup" position="center,center" size="560,180" title="RefreshTimers Setup" >
-		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+		<widget name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<widget name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<widget name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<widget name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 		<widget name="key_red"    position="0,0"   size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_green"  position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
@@ -82,10 +84,14 @@ class RefreshTimersSetup(Screen, ConfigListScreen):
 				"blue": self.manually,
 			}, -2)
 
-		self["key_green"] = Label(_("Save"))
-		self["key_red"] = Label(_("Cancel"))
-		self["key_yellow"] = Label()
-		self["key_blue"] = Label(_("Manually"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText(_("Manual correction"))
+		self["red"] = Pixmap()
+		self["green"] = Pixmap()
+		self["yellow"] = Pixmap()
+		self["blue"] = Pixmap()
 
 		choices=getLocationChoices()
 		if choices:
@@ -197,7 +203,7 @@ def Make_Correction(session):
 						changed_end += 1
 		if changed_start or changed_end:
 			msg = ngettext("Refreshed %d timer events start time", "Refreshed %d timer events start times", changed_start) % changed_start
-			msg += ngettext(" and %s end time", " and %s end times", changed_end) % changed_end
+			msg += " " + ngettext("and %s end time", "and %s end times", changed_end) % changed_end
 			if cfg.log.value:
 				saveLog(time_now(True) + msg + '\n' + changed_txt)
 		return msg
@@ -254,10 +260,10 @@ def getLocationChoices():
 class RefreshTimersScreen(Screen):
 	skin = """
 	<screen name="RefreshTimersScreen" position="center,center" size="560,420" title="RefreshTimers - Manually">
-		<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+		<widget name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<widget name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<widget name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<widget name="blue"   position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
 		<widget name="key_red"    position="0,0"   size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_green"  position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 		<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
@@ -278,10 +284,14 @@ class RefreshTimersScreen(Screen):
 				"yellow": self.test,
 			}, -2)
 
-		self["key_green"] = Label()
-		self["key_red"] = Label(_("Cancel"))
-		self["key_yellow"] = Label(_("Test"))
-		self["key_blue"] = Label(_("Correction"))
+		self["key_green"] = StaticText()
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_yellow"] = StaticText(_("Test only"))
+		self["key_blue"] = StaticText(_("Correction"))
+		self["red"] = Pixmap()
+		self["green"] = Pixmap()
+		self["yellow"] = Pixmap()
+		self["blue"] = Pixmap()
 
 		self['text'] = Label()
 		self.onLayoutFinish.append(self.layoutFinished)
