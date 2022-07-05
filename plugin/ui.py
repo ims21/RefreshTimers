@@ -175,7 +175,7 @@ def saveLog(msg):
 		try:
 			log = file(cfg.where.value + '/' + 'timer_correction.log', 'a');log.write(msg);log.close()
 		except:
-			print "[RefreshTimers] log failed"
+			print("[RefreshTimers] log failed")
 
 def Make_Correction(session):
 		if installedEpgRefresh and epgrefresh.isRunning():

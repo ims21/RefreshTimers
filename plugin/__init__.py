@@ -12,7 +12,7 @@ def localeInit():
 def _(txt):
 	t = gettext.dgettext("RefreshTimers", txt)
 	if t == txt:
-		#print "[RefreshTimers] fallback to default translation for", txt
+		#print("[RefreshTimers] fallback to default translation for", txt)
 		t = gettext.gettext(txt)
 	return t
 
