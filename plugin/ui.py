@@ -5,7 +5,7 @@ from . import _, ngettext
 #
 #    RefreshTimers plugin for OpenPLi Enigma2
 #    version:
-VERSION = "0.47"
+VERSION = "0.48"
 #    by ims(ims21) (c)2017-2022
 #
 #    This program is free software; you can redistribute it and/or
@@ -43,6 +43,7 @@ except:
 
 config.plugins.RefreshTimers = ConfigSubsection()
 config.plugins.RefreshTimers.enable = ConfigYesNo(default = False)
+config.plugins.RefreshTimers.keepend = ConfigYesNo(default = True)
 config.plugins.RefreshTimers.where = ConfigText(default = "/media/hdd")
 config.plugins.RefreshTimers.time = ConfigClock(default = ((9*60) + 0) * 60)
 config.plugins.RefreshTimers.log = ConfigYesNo(default = False)
@@ -116,6 +117,7 @@ class RefreshTimersSetup(Screen, ConfigListScreen):
 		if cfg.enable.value:
 			self.list.append(getConfigListEntry(_("Refresh time period (mm:ss)"), cfg.time))
 			self.list.append(getConfigListEntry(_("Services with PDC only"), cfg.pdconly))
+			self.list.append(getConfigListEntry(_("Keep original timer ends"), cfg.keepend))
 			self.list.append(getConfigListEntry(_("Save log"), cfg.log))
 			if cfg.log.value:
 				self.list.append(getConfigListEntry(4*" " + _("Location"), cfg.where))
@@ -198,9 +200,15 @@ def Make_Correction(session):
 						if not timer_event.isRunning(): # do not change start time when timer is recorded (instant recording 'infinitely' then cancel timer due it)
 							timer_event.begin = event.getBeginTime() - margin_before
 							changed_start += 1
-						timer_event.end = event.getBeginTime() + event.getDuration() + margin_after
+						new_event_end = event.getBeginTime()+ event.getDuration() + margin_after # new event end from EPG
+						if cfg.keepend.value: # keep original timer ends (if will not be new end later)
+							if timer_event.end < new_event_end:
+								timer_event.end = new_event_end
+								changed_end += 1
+						else:
+							timer_event.end = new_event_end
+							changed_end += 1
 						session.nav.RecordTimer.timeChanged(timer_event)
-						changed_end += 1
 		if changed_start or changed_end:
 			msg = ngettext("Refreshed %d timer events start time", "Refreshed %d timer events start times", changed_start) % changed_start
 			msg += " " + ngettext("and %s end time", "and %s end times", changed_end) % changed_end

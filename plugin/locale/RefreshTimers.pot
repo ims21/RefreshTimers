@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 16:05+0200\n"
+"POT-Creation-Date: 2022-07-05 19:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,105 +18,109 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../ui.py:254
+#: ../ui.py:262
 msgid "CF"
 msgstr ""
 
-#: ../ui.py:88 ../ui.py:288
+#: ../ui.py:89 ../ui.py:296
 msgid "Cancel"
 msgstr ""
 
-#: ../ui.py:290
+#: ../ui.py:298
 msgid "Correction"
 msgstr ""
 
-#: ../ui.py:111
+#: ../ui.py:112
 msgid "Enable Refresh Timer"
 msgstr ""
 
-#: ../ui.py:236 ../ui.py:256
+#: ../ui.py:244 ../ui.py:264
 msgid "Harddisk"
 msgstr ""
 
-#: ../ui.py:121
+#: ../ui.py:120
+msgid "Keep original timer ends"
+msgstr ""
+
+#: ../ui.py:123
 msgid "Location"
 msgstr ""
 
-#: ../ui.py:90
+#: ../ui.py:91
 msgid "Manual correction"
 msgstr ""
 
-#: ../ui.py:230
+#: ../ui.py:238
 #, python-format
 msgid "Need refresh %s timer event:"
 msgid_plural "Need refresh %s timer events:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../ui.py:215
+#: ../ui.py:223
 msgid "No changes needed..."
 msgstr ""
 
-#: ../ui.py:180 ../ui.py:213
+#: ../ui.py:182 ../ui.py:221
 msgid "Not possible - EPGRefresh is running."
 msgstr ""
 
-#: ../ui.py:186
+#: ../ui.py:188
 msgid "Nothing was changed"
 msgstr ""
 
-#: ../ui.py:106
+#: ../ui.py:107
 msgid "Nowhere"
 msgstr ""
 
-#: ../ui.py:117
+#: ../ui.py:118
 msgid "Refresh time period (mm:ss)"
 msgstr ""
 
-#: ../ui.py:276
+#: ../ui.py:284
 msgid "RefreshTimers - Manually"
 msgstr ""
 
-#: ../ui.py:129
+#: ../ui.py:131
 #, python-format
 msgid "RefreshTimers Setup v%s"
 msgstr ""
 
-#: ../ui.py:205
+#: ../ui.py:213
 #, python-format
 msgid "Refreshed %d timer events start time"
 msgid_plural "Refreshed %d timer events start times"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../ui.py:87
+#: ../ui.py:88
 msgid "Save"
 msgstr ""
 
-#: ../ui.py:119
+#: ../ui.py:121
 msgid "Save log"
 msgstr ""
 
-#: ../ui.py:118
+#: ../ui.py:119
 msgid "Services with PDC only"
 msgstr ""
 
-#: ../ui.py:289
+#: ../ui.py:297
 msgid "Test only"
 msgstr ""
 
-#: ../ui.py:237
+#: ../ui.py:245
 msgid "USB"
 msgstr ""
 
-#: ../ui.py:206
+#: ../ui.py:214
 #, python-format
 msgid "and %s end time"
 msgid_plural "and %s end times"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../ui.py:251
+#: ../ui.py:259
 msgid "root"
 msgstr ""
 
