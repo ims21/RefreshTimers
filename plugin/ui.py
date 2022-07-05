@@ -222,7 +222,7 @@ def Make_Test(session):
 						timers_txt += ("%s*%s " % (rC,fC) if timer_event.isRunning() else "") + timer_event.name[:80] + " " + "[%s:%02d]\n" % (minuts, secs)
 		if changed:
 			msg = ngettext("Need refresh %s timer event:", "Need refresh %s timer events:", changed) % changed
-			msg += "\n"
+			msg += "\n\n"
 			msg += "%s" % timers_txt
 		return msg
 
