@@ -1,5 +1,6 @@
 # for localized messages
-from . import _
+from . import _, ngettext
+
 #################################################################################
 #
 #    RefreshTimers plugin for OpenPLi Enigma2
@@ -29,6 +30,7 @@ from enigma import eEPGCache, eTimer
 from Components.config import config, getConfigListEntry, ConfigYesNo, ConfigSubsection, ConfigClock, ConfigSelection, ConfigText
 from ServiceReference import ServiceReference
 import datetime
+import skin
 
 installedEpgRefresh = False
 try:
@@ -44,6 +46,12 @@ config.plugins.RefreshTimers.time = ConfigClock(default = ((9*60) + 0) * 60)
 config.plugins.RefreshTimers.log = ConfigYesNo(default = False)
 config.plugins.RefreshTimers.pdconly = ConfigYesNo(default = True)
 cfg = config.plugins.RefreshTimers
+
+try:
+	fC = "\c%08x" % int(skin.parseColor("foreground").argb())
+except:
+	fC = "\c00f0f0f0"
+rC = "\c00ff4000"
 
 class RefreshTimersSetup(Screen, ConfigListScreen):
 	skin = """
@@ -100,11 +108,11 @@ class RefreshTimersSetup(Screen, ConfigListScreen):
 	def listMenu(self):
 		self.list = [ getConfigListEntry( self.enable, cfg.enable) ]
 		if cfg.enable.value:
-			self.list.append(getConfigListEntry(_("Time (mm:ss)"), cfg.time))
+			self.list.append(getConfigListEntry(_("Refresh time period (mm:ss)"), cfg.time))
 			self.list.append(getConfigListEntry(_("Services with PDC only"), cfg.pdconly))
 			self.list.append(getConfigListEntry(_("Save log"), cfg.log))
 			if cfg.log.value:
-				self.list.append(getConfigListEntry(_("Location"), cfg.where))
+				self.list.append(getConfigListEntry(4*" " + _("Location"), cfg.where))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -163,13 +171,13 @@ def saveLog(msg):
 
 def Make_Correction(session):
 		if installedEpgRefresh and epgrefresh.isRunning():
-			msg = "Not possible - EPGRefresh is running."
+			msg = _("Not possible - EPGRefresh is running.")
 			if cfg.log.value:
 				saveLog(time_now() + msg + '\n')
 			return msg
 		changed_start = 0
 		changed_end = 0
-		msg = "Nothing changed"
+		msg = _("Nothing was changed")
 		changed_txt = ""
 		epgcache = eEPGCache.getInstance()
 		for timer_event in session.nav.RecordTimer.timer_list:
@@ -188,17 +196,18 @@ def Make_Correction(session):
 						session.nav.RecordTimer.timeChanged(timer_event)
 						changed_end += 1
 		if changed_start or changed_end:
-			msg = "Refreshed %d timer events start time and %s end time" % (changed_start, changed_end)
+			msg = ngettext("Refreshed %d timer events start time", "Refreshed %d timer events start times", changed_start) % changed_start
+			msg += ngettext(" and %s end time", " and %s end times", changed_end) % changed_end
 			if cfg.log.value:
 				saveLog(time_now(True) + msg + '\n' + changed_txt)
 		return msg
 
 def Make_Test(session):
 		if installedEpgRefresh and epgrefresh.isRunning():
-			return "Not possible - EPGRefresh is running."
+			return _("Not possible - EPGRefresh is running.")
 		changed = 0
-		msg = "No changes needed"
-		timers_txt = "\n"
+		msg = _("No changes needed...")
+		timers_txt = ""
 		epgcache = eEPGCache.getInstance()
 		for timer_event in session.nav.RecordTimer.timer_list:
 			if timer_event.eit:
@@ -206,13 +215,15 @@ def Make_Test(session):
 				event = epgcache.lookupEventId(service_ref, timer_event.eit)
 				if event:
 					if timer_event.begin != event.getBeginTime() - margin_before:
-						delta = abs(event.getBeginTime() - margin_before - timer_event.begin)
+						delta = (event.getBeginTime() - margin_before - timer_event.begin)
 						minuts = delta//60
 						secs = delta%60
 						changed += 1
-						timers_txt += ("* " if timer_event.isRunning() else "") + timer_event.name[:80] + " " + "(%s.%02d)\n" % (minuts, secs)
+						timers_txt += ("%s*%s " % (rC,fC) if timer_event.isRunning() else "") + timer_event.name[:80] + " " + "[%s:%02d]\n" % (minuts, secs)
 		if changed:
-			msg = "Need refresh %d timer events: %s" % (changed, timers_txt)
+			msg = ngettext("Need refresh %s timer event:", "Need refresh %s timer events:", changed) % changed
+			msg += "\n"
+			msg += "%s" % timers_txt
 		return msg
 
 FRIENDLY = {

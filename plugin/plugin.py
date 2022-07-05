@@ -16,6 +16,8 @@
 #    GNU General Public License for more details.
 #    
 #################################################################################
+# for localized messages
+from . import _
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -30,7 +32,7 @@ def sessionstart(reason, **kwargs):
 
 def Plugins(**kwargs):
 	name = "RefreshTimers"
-	descr = _("update begin time for timer events")
+	descr = _("update times for timer events")
 	return [
 		PluginDescriptor(name=name, description=descr, where=PluginDescriptor.WHERE_PLUGINMENU, icon = 'plugin.png', fnc=main),
 		PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart, needsRestart = True),
