@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 19:40+0200\n"
+"POT-Creation-Date: 2022-07-05 21:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../ui.py:262
+#: ../ui.py:264
 msgid "CF"
 msgstr ""
 
-#: ../ui.py:89 ../ui.py:296
+#: ../ui.py:89 ../ui.py:298
 msgid "Cancel"
 msgstr ""
 
-#: ../ui.py:298
+#: ../ui.py:300
 msgid "Correction"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Enable Refresh Timer"
 msgstr ""
 
-#: ../ui.py:244 ../ui.py:264
+#: ../ui.py:246 ../ui.py:266
 msgid "Harddisk"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Manual correction"
 msgstr ""
 
-#: ../ui.py:238
+#: ../ui.py:240
 #, python-format
 msgid "Need refresh %s timer event:"
 msgid_plural "Need refresh %s timer events:"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Refresh time period (mm:ss)"
 msgstr ""
 
-#: ../ui.py:284
+#: ../ui.py:286
 msgid "RefreshTimers - Manually"
 msgstr ""
 
@@ -105,11 +105,11 @@ msgstr ""
 msgid "Services with PDC only"
 msgstr ""
 
-#: ../ui.py:297
+#: ../ui.py:299
 msgid "Test only"
 msgstr ""
 
-#: ../ui.py:245
+#: ../ui.py:247
 msgid "USB"
 msgstr ""
 
@@ -120,7 +120,7 @@ msgid_plural "and %s end times"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../ui.py:259
+#: ../ui.py:261
 msgid "root"
 msgstr ""
 

@@ -197,7 +197,7 @@ def Make_Correction(session):
 						continue
 					if timer_event.begin != event.getBeginTime() - margin_before:
 						changed_txt += getChangedTxt(abs(event.getBeginTime() - margin_before - timer_event.begin), ServiceReference(service_ref).getServiceName(), timer_event.name)
-						if not timer_event.isRunning(): # do not change start time when timer is recorded (instant recording 'infinitely' then cancel timer due it)
+						if not timer_event.isRunning(): # do not change start time when timer is recorded (all instant recording, recording timer ... enigma cancel recording when is changed start time)
 							timer_event.begin = event.getBeginTime() - margin_before
 							changed_start += 1
 						new_event_end = event.getBeginTime()+ event.getDuration() + margin_after # new event end from EPG
@@ -228,6 +228,8 @@ def Make_Test(session):
 				service_ref = timer_event.service_ref and timer_event.service_ref.ref
 				event = epgcache.lookupEventId(service_ref, timer_event.eit)
 				if event:
+					if cfg.pdconly.value and not event.getPdcPil():
+						continue
 					if timer_event.begin != event.getBeginTime() - margin_before:
 						delta = (event.getBeginTime() - margin_before - timer_event.begin)
 						minuts = delta//60
