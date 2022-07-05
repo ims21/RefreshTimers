@@ -4,8 +4,8 @@ from . import _
 #
 #    RefreshTimers plugin for OpenPLi Enigma2
 #    version:
-VERSION = "0.46"
-#    by ims(ims21) (c)2017
+VERSION = "0.47"
+#    by ims(ims21) (c)2017-2022
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of the GNU General Public License
@@ -167,7 +167,8 @@ def Make_Correction(session):
 			if cfg.log.value:
 				saveLog(time_now() + msg + '\n')
 			return msg
-		changed = 0
+		changed_start = 0
+		changed_end = 0
 		msg = "Nothing changed"
 		changed_txt = ""
 		epgcache = eEPGCache.getInstance()
@@ -180,12 +181,14 @@ def Make_Correction(session):
 						continue
 					if timer_event.begin != event.getBeginTime() - margin_before:
 						changed_txt += getChangedTxt(abs(event.getBeginTime() - margin_before - timer_event.begin), ServiceReference(service_ref).getServiceName(), timer_event.name)
-						timer_event.begin = event.getBeginTime() - margin_before
+						if not timer_event.isRunning(): # do not change start time when timer is recorded (instant recording 'infinitely' then cancel timer due it)
+							timer_event.begin = event.getBeginTime() - margin_before
+							changed_start += 1
 						timer_event.end = event.getBeginTime() + event.getDuration() + margin_after
 						session.nav.RecordTimer.timeChanged(timer_event)
-						changed += 1
-		if changed:
-			msg = "Refresh %d timer events" % changed
+						changed_end += 1
+		if changed_start or changed_end:
+			msg = "Refreshed %d timer events start time and %s end time" % (changed_start, changed_end)
 			if cfg.log.value:
 				saveLog(time_now(True) + msg + '\n' + changed_txt)
 		return msg
@@ -195,7 +198,7 @@ def Make_Test(session):
 			return "Not possible - EPGRefresh is running."
 		changed = 0
 		msg = "No changes needed"
-		timers_txt = ""
+		timers_txt = "\n"
 		epgcache = eEPGCache.getInstance()
 		for timer_event in session.nav.RecordTimer.timer_list:
 			if timer_event.eit:
@@ -207,9 +210,9 @@ def Make_Test(session):
 						minuts = delta//60
 						secs = delta%60
 						changed += 1
-						timers_txt += '\n' + timer_event.name[:80] + "  %s:%02d" % (minuts, secs)
+						timers_txt += ("* " if timer_event.isRunning() else "") + timer_event.name[:80] + " " + "(%s.%02d)\n" % (minuts, secs)
 		if changed:
-			msg = "Need refresh %d timer events:%s" % (changed, timers_txt)
+			msg = "Need refresh %d timer events: %s" % (changed, timers_txt)
 		return msg
 
 FRIENDLY = {

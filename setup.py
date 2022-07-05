@@ -3,7 +3,7 @@ import setup_translate
 
 pkg = 'Extensions.RefreshTimers'
 setup (name = 'enigma2-plugin-extensions-refreshtimers',
-	version = '0.46',
+	version = '0.47',
 	description = 'plugin for refresh event timers',
 	packages = [pkg],
 	package_dir = {pkg: 'plugin'},
