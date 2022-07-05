@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Enigma 2 RefreshTimers Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-05 16:05+0200\n"
-"PO-Revision-Date: 2022-07-05 16:06+0200\n"
+"PO-Revision-Date: 2022-07-05 16:08+0200\n"
 "Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: PLi\n"
 "Language: cs_CZ\n"
@@ -99,7 +99,6 @@ msgid "Services with PDC only"
 msgstr "Pouze programy s PDC"
 
 #: ../ui.py:289
-#, fuzzy
 msgid "Test only"
 msgstr "Otestovat"
 
