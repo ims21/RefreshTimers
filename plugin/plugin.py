@@ -22,12 +22,12 @@ from . import _
 from Plugins.Plugin import PluginDescriptor
 
 def main(session,**kwargs):
-	import ui
+	from . import ui
 	session.open(ui.RefreshTimersSetup)
 
 def sessionstart(reason, **kwargs):
 	if reason == 0:
-		import ui
+		from . import ui
 		ui.RefreshTimers.startRefreshTimers(kwargs["session"])
 
 def Plugins(**kwargs):
