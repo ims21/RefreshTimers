@@ -150,21 +150,21 @@ class RefreshTimersSetup(Screen, ConfigListScreen):
 def time_now(fulldate=False):
 	now = datetime.datetime.now()
 	if fulldate:
-		return now.strftime("%d-%m-%Y %H:%M:%S") + 2*" "
-	return now.strftime("%H:%M:%S") + 2*" "
+		return now.strftime("%d-%m-%Y %H:%M:%S") + 2 * " "
+	return now.strftime("%H:%M:%S") + 2 * " "
 
 def getChangedTxt(delta, service_name, name):
-	time=""
-	hours = delta//3600
-	rest = delta%3600
-	minuts = rest//60
-	secs = rest%60
+	time = ""
+	hours = delta // 3600
+	rest = delta % 3600
+	minuts = rest // 60
+	secs = rest % 60
 
 	if hours:
-		time="(%dh %dm %ds)" % (hours, minuts, secs)
+		time = "(%dh %dm %ds)" % (hours, minuts, secs)
 	else:
-		time="(%dm %ds)" % (minuts, secs)
-	return "{0:26s} {1:60s} {2:>10s}\n" .format(service_name[:26].decode("utf-8","ignore"), name[:60].decode("utf-8","ignore"), time)
+		time = "(%dm %ds)" % (minuts, secs)
+	return "{0:26s} {1:60s} {2:>10s}\n" .format(service_name[:26], name[:60], time)
 	
 
 margin_before = config.recording.margin_before.value * 60
@@ -196,7 +196,8 @@ def Make_Correction(session):
 					if cfg.pdconly.value and not event.getPdcPil():
 						continue
 					if timer_event.begin != event.getBeginTime() - margin_before:
-						changed_txt += getChangedTxt(abs(event.getBeginTime() - margin_before - timer_event.begin), ServiceReference(service_ref).getServiceName(), timer_event.name)
+						if cfg.log.value:
+							changed_txt += getChangedTxt(abs(event.getBeginTime() - margin_before - timer_event.begin), ServiceReference(service_ref).getServiceName(), timer_event.name)
 						if not timer_event.isRunning(): # do not change start time when timer is recorded (all instant recording, recording timer ... enigma cancel recording when is changed start time)
 							timer_event.begin = event.getBeginTime() - margin_before
 							changed_start += 1
